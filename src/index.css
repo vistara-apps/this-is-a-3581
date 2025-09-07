@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: hsl(220 20% 10%);
+    background-color: hsl(220 20% 98%);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white px-lg py-md rounded-lg font-medium hover:opacity-90 transition-opacity duration-200;
+  }
+  
+  .btn-emergency {
+    @apply bg-emergency text-white px-lg py-md rounded-lg font-medium hover:opacity-90 transition-opacity duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-surface border border-border text-text px-lg py-md rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200;
+  }
+  
+  .card {
+    @apply bg-surface rounded-lg shadow-card p-lg border border-border;
+  }
+  
+  .recording-indicator {
+    @apply animate-recording bg-emergency rounded-full;
+  }
+}
