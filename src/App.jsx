@@ -1,20 +1,35 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { Toaster } from 'react-hot-toast'
 import Header from './components/Header'
 import StateSelector from './components/StateSelector'
 import RightsCard from './components/RightsCard'
 import ScriptedResponses from './components/ScriptedResponses'
 import RecordingControls from './components/RecordingControls'
 import EmergencyAlert from './components/EmergencyAlert'
-import SubscriptionModal from './components/SubscriptionModal'
+import SubscriptionModalNew from './components/SubscriptionModalNew'
+import AuthModal from './components/auth/AuthModal'
 import { statesData } from './data/statesData'
+import { useAppStore } from './store/appStore'
 
 function App() {
-  const [selectedState, setSelectedState] = useState(null)
-  const [currentLanguage, setCurrentLanguage] = useState('en')
-  const [isRecording, setIsRecording] = useState(false)
-  const [showSubscriptionModal, setShowSubscriptionModal] = useState(false)
-  const [userSubscription, setUserSubscription] = useState('free') // free, premium, lifetime
-  const [activeView, setActiveView] = useState('rights') // rights, scripts, emergency
+  const {
+    selectedState,
+    currentLanguage,
+    activeView,
+    isRecording,
+    subscriptionTier,
+    showSubscriptionModal,
+    isAuthenticated,
+    isLoading,
+    setSelectedState,
+    setCurrentLanguage,
+    setActiveView,
+    setIsRecording,
+    setShowSubscriptionModal,
+    initializeApp
+  } = useAppStore()
+
+  const [showAuthModal, setShowAuthModal] = React.useState(false)
 
   // Initialize with user's location if available
   useEffect(() => {
